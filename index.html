@@ -15,12 +15,17 @@
       <header>
         <div>
           <h1>Music albums</h1>
+          <select class="genre" name="genre"
+          v-model="selected">
+            <option :value="genre" v-for="genre in genres">{{genre}}</option>
+          </select>
         </div>
       </header>
 
       <main>
         <div id="albums">
-          <div class="card-container" v-for="album in albums">
+          <div class="card-container" v-for="album in albums"
+          v-if="album.genre.includes(currentGenre())">
             <div class="card">
               <div class="cover"
                 :style="`background-image:url('${album.poster}')`">
