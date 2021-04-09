@@ -15,16 +15,21 @@
       <header>
         <div>
           <h1>Music albums</h1>
-          <select class="genre" name="genre"
-          v-model="selected">
+          <select name="genre" v-model="selected">
             <option :value="genre" v-for="genre in genres">{{genre}}</option>
           </select>
+          <select name="sort" v-model="filter">
+            <option value="sort">Sort by</option>
+            <option value="min-year">Year < </option>
+            <option value="max-year">Year > </option>
+          </select>
+
         </div>
       </header>
 
       <main>
         <div id="albums">
-          <div class="card-container" v-for="album in albums"
+          <div class="card-container" v-for="album in albumsComputed"
           v-if="album.genre.includes(currentGenre())">
             <div class="card">
               <div class="cover"
